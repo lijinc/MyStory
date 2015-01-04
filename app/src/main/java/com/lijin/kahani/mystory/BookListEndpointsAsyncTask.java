@@ -1,6 +1,7 @@
 package com.lijin.kahani.mystory;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.widget.Toast;
@@ -11,6 +12,7 @@ import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
 import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
 import com.lijin.kahani.backend.bookApi.BookApi;
 import com.lijin.kahani.backend.bookApi.model.Book;
+import com.lijin.kahani.backend.bookApi.model.CollectionResponseBook;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -19,18 +21,18 @@ import java.util.List;
 /**
  * Created by LIJIN on 1/3/2015.
  */
-public class StoryListEndpointsAsyncTask extends AsyncTask<Void, Void, List<Book>> {
+public class BookListEndpointsAsyncTask extends AsyncTask<String, Void, CollectionResponseBook> {
     private BookApi myApiService = null;
     private Context context;
     private Fragment fragment;
     private String fragmentTag;
-    StoryListEndpointsAsyncTask(Context context, Fragment fragment, String fragmentTag) {
+    BookListEndpointsAsyncTask(Context context, Fragment fragment, String fragmentTag) {
         this.context = context;
         this.fragment=fragment;
         this.fragmentTag=fragmentTag;
     }
     @Override
-    protected List<Book> doInBackground(Void... params) {
+    protected CollectionResponseBook doInBackground(String... params) {
         if(myApiService == null) { // Only do this once
             BookApi.Builder builder = new BookApi.Builder(AndroidHttp.newCompatibleTransport(),
                     new AndroidJsonFactory(), null)
@@ -46,9 +48,12 @@ public class StoryListEndpointsAsyncTask extends AsyncTask<Void, Void, List<Book
         }
 
         try {
-            return myApiService.list().execute().getItems();
+            if(params.length==0)
+                return myApiService.list().execute();
+            else
+                return myApiService.list().setCursor(params[0]).execute();
         } catch (IOException e) {
-            return Collections.EMPTY_LIST;
+            return null;
         }
     }
 
@@ -58,11 +63,11 @@ public class StoryListEndpointsAsyncTask extends AsyncTask<Void, Void, List<Book
     }
 
     @Override
-    protected void onPostExecute(List<Book> books) {
-        super.onPostExecute(books);
+    protected void onPostExecute(CollectionResponseBook booksPair) {
+        super.onPostExecute(booksPair);
         if(fragmentTag.equals("HOME")){
             HomeFragment homeFragment = (HomeFragment) fragment;
-            homeFragment.onHomeListLoad(books);
+            homeFragment.onHomeListLoad(booksPair);
         }
     }
 }

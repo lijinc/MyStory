@@ -35,10 +35,6 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.StoryViewHolde
         return bookList.size();
     }
 
-    public void setList(List<Book> bookList){
-        this.bookList=bookList;
-        notifyDataSetChanged();
-    }
 
     @Override
     public void onBindViewHolder(StoryViewHolder storyViewHolder, final int i) {
