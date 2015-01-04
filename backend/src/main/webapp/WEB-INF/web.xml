@@ -14,7 +14,7 @@
         <init-param>
             <param-name>services</param-name>
             <param-value>com.lijin.kahani.backend.BookEndpoint,
-                com.lijin.kahani.backend.UserEndpoint</param-value>
+                com.lijin.kahani.backend.UserEndpoint, com.lijin.kahani.backend.IndexEndpoint</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>

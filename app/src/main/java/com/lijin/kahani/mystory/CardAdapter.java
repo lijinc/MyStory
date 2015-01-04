@@ -38,16 +38,16 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.StoryViewHolde
 
     @Override
     public void onBindViewHolder(StoryViewHolder storyViewHolder, final int i) {
-        final Book sc = bookList.get(i);
-        storyViewHolder.vTitle.setText(sc.getTitle());
-        storyViewHolder.vAuthor.setText(sc.getAuthor());
-        //Todo implement story view
+        final Book book = bookList.get(i);
+        storyViewHolder.vTitle.setText(book.getTitle());
+        storyViewHolder.vAuthor.setText(book.getAuthor());
         storyViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               /* Intent i = new Intent(context,StoryViewActivity.class);
-                i.putExtra("STORYID", sc.getId());
-                context.startActivity(i);*/
+                Intent i = new Intent(context,IndexViewActivity.class);
+                i.putExtra("BOOKTITLE",book.getTitle());
+                i.putExtra("BOOKID", book.getId());
+                context.startActivity(i);
             }
         });
     }
