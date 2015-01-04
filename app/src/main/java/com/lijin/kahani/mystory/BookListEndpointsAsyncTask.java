@@ -1,5 +1,6 @@
 package com.lijin.kahani.mystory;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.AsyncTask;
@@ -26,6 +27,7 @@ public class BookListEndpointsAsyncTask extends AsyncTask<String, Void, Collecti
     private Context context;
     private Fragment fragment;
     private String fragmentTag;
+    private ProgressDialog dialog;
     BookListEndpointsAsyncTask(Context context, Fragment fragment, String fragmentTag) {
         this.context = context;
         this.fragment=fragment;
@@ -60,11 +62,17 @@ public class BookListEndpointsAsyncTask extends AsyncTask<String, Void, Collecti
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
+        dialog= new ProgressDialog(context);
+        dialog.setMessage("Please wait");
+        dialog.show();
     }
 
     @Override
     protected void onPostExecute(CollectionResponseBook booksPair) {
         super.onPostExecute(booksPair);
+        if (dialog.isShowing()) {
+            dialog.dismiss();
+        }
         if(fragmentTag.equals("HOME")){
             HomeFragment homeFragment = (HomeFragment) fragment;
             homeFragment.onHomeListLoad(booksPair);
