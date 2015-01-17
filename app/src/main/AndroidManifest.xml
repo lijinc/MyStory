@@ -24,9 +24,10 @@
             android:label="@string/title_activity_index_view"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
         </activity>
+
         <activity
-            android:name=".StoryViewActivity"
-            android:label="@string/title_activity_story_view" >
+            android:name=".AddStoryActivity"
+            android:label="@string/title_activity_add_story" >
         </activity>
     </application>
 
