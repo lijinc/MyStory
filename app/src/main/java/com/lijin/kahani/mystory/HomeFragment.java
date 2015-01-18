@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.lijin.kahani.backend.bookApi.model.Book;
 import com.lijin.kahani.backend.bookApi.model.CollectionResponseBook;
+import com.lijin.kahani.mystory.database.bookDbmsHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.List;
  * Created by LIJIN on 1/4/2015.
  */
 public class HomeFragment extends Fragment {
+
     CardAdapter cardAdapter=null;
     List<Book> bookList;
     String nextPageToken=null;
@@ -45,6 +47,7 @@ public class HomeFragment extends Fragment {
     // Inflate the view for the fragment based on layout XML
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         mActivity=getActivity();
         homeFragment=this;
         View view = inflater.inflate(R.layout.fragment_home, container, false);

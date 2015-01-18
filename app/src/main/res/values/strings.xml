@@ -9,5 +9,6 @@
     <string name="title_activity_add_story">AddStoryActivity</string>
     <string name="title_activity_chapter_main">ChapterMainActivity</string>
     <string name="title_activity_add_chapter">AddChapterActivity</string>
+    <string name="title_activity_my_works_fragment">My Works</string>
 
 </resources>

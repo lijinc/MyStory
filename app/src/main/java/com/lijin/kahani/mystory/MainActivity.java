@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -41,9 +42,9 @@ public class MainActivity extends ActionBarActivity {
         line3 =findViewById(R.id.line3);
         line4 =findViewById(R.id.line4);
         line1.setVisibility(View.VISIBLE);
-        line2.setVisibility(View.INVISIBLE);
-        line3.setVisibility(View.INVISIBLE);
-        line4.setVisibility(View.INVISIBLE);
+        line2.setVisibility(View.VISIBLE);
+        line3.setVisibility(View.VISIBLE);
+        line4.setVisibility(View.VISIBLE);
         homeTab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,9 +129,9 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-//Todo add other items
+    //Todo add other items
     public static class MyPagerAdapter extends FragmentPagerAdapter {
-        private static int NUM_ITEMS = 1;
+        private static int NUM_ITEMS = 2;
 
         public MyPagerAdapter(FragmentManager fragmentManager) {
             super(fragmentManager);
@@ -144,14 +145,19 @@ public class MainActivity extends ActionBarActivity {
         @Override
         public android.support.v4.app.Fragment getItem(int position) {
             switch (position) {
-                case 0:
+                case 0: {
+                    return MyWorksFragment.newInstance();
+
+                }
+                case 1: {
+                    Log.d("vr", "popinz");
                     return HomeFragment.newInstance();
-            /*    case 1:
-                    return TrendingFragment.newInstance();
+                }
                 case 2:
-                    return LibraryFragment.newInstance();
-                case 3:
-                    return MyFragment.newInstance();*/
+                    //      return LibraryFragment.newInstance();
+                case 3: {
+
+                }
                 default:
                     return null;
             }

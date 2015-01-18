@@ -36,6 +36,10 @@
             android:name=".AddChapterActivity"
             android:label="@string/title_activity_add_chapter" >
         </activity>
+        <activity
+            android:name=".MyWorksFragment"
+            android:label="@string/title_activity_my_works_fragment" >
+        </activity>
     </application>
 
 </manifest>
