@@ -24,10 +24,17 @@
             android:label="@string/title_activity_index_view"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
         </activity>
-
         <activity
             android:name=".AddStoryActivity"
             android:label="@string/title_activity_add_story" >
+        </activity>
+        <activity
+            android:name=".ChapterMainActivity"
+            android:label="@string/title_activity_chapter_main" >
+        </activity>
+        <activity
+            android:name=".AddChapterActivity"
+            android:label="@string/title_activity_add_chapter" >
         </activity>
     </application>
 

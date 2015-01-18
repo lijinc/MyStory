@@ -1,0 +1,58 @@
+package com.lijin.kahani.mystory;
+
+import android.content.Intent;
+import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.EditText;
+
+import com.commonsware.cwac.richedit.RichEditText;
+import com.lijin.kahani.backend.bookApi.model.Book;
+
+
+public class AddStoryActivity extends ActionBarActivity {
+    RichEditText storyEditText;
+    EditText titleEditText;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_add_story);
+        storyEditText=(RichEditText)findViewById(R.id.story_richtext);
+        titleEditText=(EditText)findViewById(R.id.edit_title_text);
+        storyEditText.enableActionModes(true);
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_add_story, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_save) {
+            Book book =new Book();
+            book.setAuthor("L.I.J.I.N");
+            book.setTitle(titleEditText.getText().toString());
+            book.setDescription(storyEditText.getText().toString());
+            new AddBookAsyncTask(this).execute(book);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void bookAdded(Long bookId){
+        Intent i= new Intent(this,ChapterMainActivity.class);
+        i.putExtra("BOOKID",bookId);
+        startActivity(i);
+    }
+}

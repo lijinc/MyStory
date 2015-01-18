@@ -15,9 +15,20 @@ public class Book {
     Long id;
     String author;
     String title;
+    String description;
     int avgRating;
     String image;
     long numberOfViews;
+    String date;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     public Book() {}
 
     public Long getId() {
@@ -60,11 +71,19 @@ public class Book {
         this.avgRating = avgRating;
     }
 
-    public long getNumberofviews() {
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public long getNumberOfViews() {
         return numberOfViews;
     }
 
-    public void setNumberofviews(long numberOfViews) {
+    public void setNumberOfViews(long numberOfViews) {
         this.numberOfViews = numberOfViews;
     }
 }

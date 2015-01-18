@@ -6,5 +6,8 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_index_view">IndexViewActivity</string>
     <string name="title_activity_story_view">StoryViewActivity</string>
+    <string name="title_activity_add_story">AddStoryActivity</string>
+    <string name="title_activity_chapter_main">ChapterMainActivity</string>
+    <string name="title_activity_add_chapter">AddChapterActivity</string>
 
 </resources>

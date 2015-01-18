@@ -56,7 +56,7 @@ public class HomeFragment extends Fragment {
         recList.setLayoutManager(linearLayoutManager);
         recList.setAdapter(cardAdapter);
         //Todo update only on scrolldown
-        recList.setOnScrollListener(new RecyclerView.OnScrollListener() {
+    /*    recList.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 visibleItemCount = linearLayoutManager.getChildCount();
@@ -76,7 +76,7 @@ public class HomeFragment extends Fragment {
                 super.onScrollStateChanged(recyclerView, newState);
                 loading=true;
             }
-        });
+        });*/
 
         new BookListEndpointsAsyncTask(getActivity(),this,"HOME").execute();
         return view;
