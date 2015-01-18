@@ -19,7 +19,7 @@ import com.lijin.kahani.mystory.Utilities.Constants;
 import java.util.ArrayList;
 import java.util.List;
 
-public class bookDbmsHelper extends SQLiteOpenHelper {
+public class BookDbmsHelper extends SQLiteOpenHelper {
 
 
     // Table Columns
@@ -47,7 +47,7 @@ public class bookDbmsHelper extends SQLiteOpenHelper {
             + " TEXT NOT NULL , " + dbBookDate
             + " TEXT NOT NULL  " + ");";
 
-    public bookDbmsHelper(Context context) {
+    public BookDbmsHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -58,7 +58,7 @@ public class bookDbmsHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        Log.w(bookDbmsHelper.class.getName(),
+        Log.w(BookDbmsHelper.class.getName(),
                 "Upgrading database from version " + oldVersion + " to "
                         + newVersion + ", which will destroy all old data");
         db.execSQL("DROP TABLE IF EXISTS " + Constants.TABLE_BOOKS);
@@ -87,16 +87,21 @@ public class bookDbmsHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         List<Book> booksList = new ArrayList<Book>();
 
-        Cursor CurAllBooks = db.rawQuery("SELECT * FROM " + Constants.TABLE_BOOKS, null);
-        CurAllBooks.moveToFirst();
-        Book book = new Book();
-        while (CurAllBooks.isAfterLast() == false) {
-            book.setId((long) (CurAllBooks.getInt(CurAllBooks.getColumnIndex(dbBookId))));
-            book.setAuthor(CurAllBooks.getString(CurAllBooks.getColumnIndex(dbBookAuthor)));
-            book.setAuthor(CurAllBooks.getString(CurAllBooks.getColumnIndex(dbBookAuthor)));
-            //TODO make full
+        Cursor curserAllBooks = db.rawQuery("SELECT * FROM " + Constants.TABLE_BOOKS, null);
+        curserAllBooks.moveToFirst();
+
+        while (curserAllBooks.isAfterLast() == false) {
+            Book book = new Book();
+            book.setId((long) (curserAllBooks.getInt(curserAllBooks.getColumnIndex(dbBookId))));
+            book.setAuthor(curserAllBooks.getString(curserAllBooks.getColumnIndex(dbBookAuthor)));
+            book.setTitle(curserAllBooks.getString(curserAllBooks.getColumnIndex(dbBookTitle)));
+            book.setDescription(curserAllBooks.getString(curserAllBooks.getColumnIndex(dbBookDescription)));
+            book.setAvgRating(curserAllBooks.getInt(curserAllBooks.getColumnIndex(dbBookAvgRating)));
+            book.setImage(curserAllBooks.getString(curserAllBooks.getColumnIndex(dbBookImgUrl)));
+            book.setDate(curserAllBooks.getString(curserAllBooks.getColumnIndex(dbBookDate)));
+            book.setNumberOfViews((long)curserAllBooks.getInt(curserAllBooks.getColumnIndex(dbBookNumberOfViews)));
             booksList.add(book);
-            CurAllBooks.moveToNext();
+            curserAllBooks.moveToNext();
         }
         return booksList;
     }

@@ -34,8 +34,8 @@ public class MainActivity extends ActionBarActivity {
         adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
         vpPager.setAdapter(adapterViewPager);
         FrameLayout homeTab =(FrameLayout)findViewById(R.id.tab_button_home);
-        /*FrameLayout tab2 =(FrameLayout)findViewById(R.id.tabbutton2);
-        FrameLayout tab3 =(FrameLayout)findViewById(R.id.tabbutton3);
+        FrameLayout newTab =(FrameLayout)findViewById(R.id.tab_button_new);
+        /*FrameLayout tab3 =(FrameLayout)findViewById(R.id.tabbutton3);
         FrameLayout tab4 =(FrameLayout)findViewById(R.id.tabbutton4);*/
         line1 =findViewById(R.id.line1);
         line2 =findViewById(R.id.line2);
@@ -51,13 +51,13 @@ public class MainActivity extends ActionBarActivity {
                 vpPager.setCurrentItem(0);
             }
         });
-        /*tab2.setOnClickListener(new View.OnClickListener() {
+        newTab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 vpPager.setCurrentItem(1);
             }
         });
-        tab3.setOnClickListener(new View.OnClickListener() {
+        /*tab3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 vpPager.setCurrentItem(2);
@@ -146,12 +146,12 @@ public class MainActivity extends ActionBarActivity {
         public android.support.v4.app.Fragment getItem(int position) {
             switch (position) {
                 case 0: {
-                    return MyWorksFragment.newInstance();
+                    return HomeFragment.newInstance();
+
 
                 }
                 case 1: {
-                    Log.d("vr", "popinz");
-                    return HomeFragment.newInstance();
+                    return MyWorksFragment.newInstance();
                 }
                 case 2:
                     //      return LibraryFragment.newInstance();

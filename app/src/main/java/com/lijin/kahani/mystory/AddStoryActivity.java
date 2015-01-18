@@ -3,23 +3,22 @@ package com.lijin.kahani.mystory;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 
 import com.commonsware.cwac.richedit.RichEditText;
 import com.lijin.kahani.backend.bookApi.model.Book;
-import com.lijin.kahani.mystory.database.bookDbmsHelper;
+import com.lijin.kahani.mystory.database.BookDbmsHelper;
 
 
 public class AddStoryActivity extends ActionBarActivity {
     RichEditText storyEditText;
     EditText titleEditText;
-    private bookDbmsHelper booksDb;
+    private BookDbmsHelper booksDb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        booksDb = new bookDbmsHelper(this);
+        booksDb = new BookDbmsHelper(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_story);
         storyEditText=(RichEditText)findViewById(R.id.story_richtext);
@@ -40,7 +39,7 @@ public class AddStoryActivity extends ActionBarActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        booksDb = new bookDbmsHelper(this);
+        booksDb = new BookDbmsHelper(this);
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -55,6 +54,8 @@ public class AddStoryActivity extends ActionBarActivity {
             book.setDescription(storyEditText.getText().toString());
             book.setDate(System.currentTimeMillis() + "");
             booksDb.insertBooks(book);
+            Intent intent = new Intent(this, AddChapterActivity.class);
+            startActivity(intent);
             //Twist
         }
 
