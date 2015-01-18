@@ -45,6 +45,7 @@ public class AddStoryActivity extends ActionBarActivity {
             book.setTitle(titleEditText.getText().toString());
             book.setDescription(storyEditText.getText().toString());
             new AddBookAsyncTask(this).execute(book);
+            //Twist
         }
 
         return super.onOptionsItemSelected(item);
